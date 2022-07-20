@@ -42,7 +42,10 @@ class MyHomePage extends StatelessWidget {
               color: Colors.red,
               child: Text("3秒後來電測試",style: TextStyle(fontSize: 40,color: Colors.white),),
               onPressed: () {
-                callNotification.showInComingNotification();
+                Future.delayed(Duration(seconds: 3),() async{
+                  callNotification.showInComingNotification();
+                });
+
              },
             ),
           ],

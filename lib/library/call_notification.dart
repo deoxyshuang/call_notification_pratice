@@ -20,9 +20,9 @@ class CallNotification{
   }
 
   //顯示來電
-  void showInComingNotification(){
+  void showInComingNotification() async{
     print("####接聽");
-    Future.delayed(Duration(seconds: 3),() async{
+
       this._currentUuid = _uuid.v4();
       var params = <String, dynamic>{
         'id': _currentUuid,
@@ -66,7 +66,7 @@ class CallNotification{
         }
       };
       await FlutterCallkitIncoming.showCallkitIncoming(params);
-    });
+
   }
 
   //初始化call的各種CallBack
