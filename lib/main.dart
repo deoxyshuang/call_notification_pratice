@@ -48,6 +48,14 @@ class MyHomePage extends StatelessWidget {
 
              },
             ),
+            MaterialButton(
+              color: Colors.blue,
+              child: Text("取消來電",style: TextStyle(fontSize: 40,color: Colors.white),),
+              onPressed: () {
+                callNotification.cancelInComingNotification();
+
+              },
+            ),
           ],
         ),
       ),

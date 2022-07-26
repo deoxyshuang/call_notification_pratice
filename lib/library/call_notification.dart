@@ -51,78 +51,81 @@ class CallNotification{
         'ios': <String, dynamic>{
           'iconName': 'CallKitLogo',
           'handleType': 'generic',
-          'supportsVideo': false,
+          'supportsVideo': true,
           'maximumCallGroups': 2,
           'maximumCallsPerCallGroup': 1,
           'audioSessionMode': 'default',
-          'audioSessionActive': false,
+          'audioSessionActive': true,
           'audioSessionPreferredSampleRate': 44100.0,
           'audioSessionPreferredIOBufferDuration': 0.005,
-          'supportsDTMF': false,
-          'supportsHolding': false,
-          'supportsGrouping': false,
-          'supportsUngrouping': false,
+          'supportsDTMF': true,
+          'supportsHolding': true,
+          'supportsGrouping': true,
+          'supportsUngrouping': true,
           'ringtonePath': 'system_ringtone_default'
         }
       };
       await FlutterCallkitIncoming.showCallkitIncoming(params);
-
   }
-
+  void cancelInComingNotification()async{
+    await FlutterCallkitIncoming.endAllCalls();
+  }
   //初始化call的各種CallBack
   Future<void> listenerEvent() async {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      FlutterCallkitIncoming.onEvent.listen((event) {
+      FlutterCallkitIncoming.onEvent.listen((event) async{
         if(callListener!=null)callListener!(event!.name);
-        // switch (event!.name) {
-        //   case CallEvent.ACTION_CALL_INCOMING:
-        //     print("####接到來電");
-        //     break;
-        //   case CallEvent.ACTION_CALL_START:
-        //   // TODO: started an outgoing call
-        //   // TODO: show screen calling in Flutter
-        //     break;
-        //   case CallEvent.ACTION_CALL_ACCEPT:
-        //     print("####接起來店");
-        //     break;
-        //   case CallEvent.ACTION_CALL_DECLINE:
-        //     print("####拒絕來電");
-        //     break;
-        //   case CallEvent.ACTION_CALL_ENDED:
-        //   // TODO: ended an incoming/outgoing call
-        //     break;
-        //   case CallEvent.ACTION_CALL_TIMEOUT:
-        //   // TODO: missed an incoming call
-        //     break;
-        //   case CallEvent.ACTION_CALL_CALLBACK:
-        //   // TODO: only Android - click action `Call back` from missed call notification
-        //     break;
-        //   case CallEvent.ACTION_CALL_TOGGLE_HOLD:
-        //   // TODO: only iOS
-        //     break;
-        //   case CallEvent.ACTION_CALL_TOGGLE_MUTE:
-        //   // TODO: only iOS
-        //     break;
-        //   case CallEvent.ACTION_CALL_TOGGLE_DMTF:
-        //   // TODO: only iOS
-        //     break;
-        //   case CallEvent.ACTION_CALL_TOGGLE_GROUP:
-        //   // TODO: only iOS
-        //     break;
-        //   case CallEvent.ACTION_CALL_TOGGLE_AUDIO_SESSION:
-        //   // TODO: only iOS
-        //     break;
-        //   case CallEvent.ACTION_DID_UPDATE_DEVICE_PUSH_TOKEN_VOIP:
-        //   // TODO: only iOS
-        //     break;
-        // }
+        switch (event!.name) {
+          case CallEvent.ACTION_CALL_INCOMING:
+            print("####接到來電");
+            break;
+          case CallEvent.ACTION_CALL_START:
+          // TODO: started an outgoing call
+          // TODO: show screen calling in Flutter
+            break;
+          case CallEvent.ACTION_CALL_ACCEPT:
+            await FlutterCallkitIncoming.endAllCalls();
+            print("####接起來店");
+            break;
+          case CallEvent.ACTION_CALL_DECLINE:
+            print("####拒絕來電");
+            break;
+          case CallEvent.ACTION_CALL_ENDED:
+          // TODO: ended an incoming/outgoing call
+            break;
+          case CallEvent.ACTION_CALL_TIMEOUT:
+          // TODO: missed an incoming call
+            break;
+          case CallEvent.ACTION_CALL_CALLBACK:
+          // TODO: only Android - click action `Call back` from missed call notification
+            break;
+          case CallEvent.ACTION_CALL_TOGGLE_HOLD:
+          // TODO: only iOS
+            break;
+          case CallEvent.ACTION_CALL_TOGGLE_MUTE:
+          // TODO: only iOS
+            break;
+          case CallEvent.ACTION_CALL_TOGGLE_DMTF:
+          // TODO: only iOS
+            break;
+          case CallEvent.ACTION_CALL_TOGGLE_GROUP:
+          // TODO: only iOS
+            break;
+          case CallEvent.ACTION_CALL_TOGGLE_AUDIO_SESSION:
+          // TODO: only iOS
+            break;
+          case CallEvent.ACTION_DID_UPDATE_DEVICE_PUSH_TOKEN_VOIP:
+          // TODO: only iOS
+            break;
+        }
       });
     }catch(e){
       print(e);
     }
     //沒加這行，ios將在接受第一次的上方訊息通知後，之後會自己開啟插件提供的畫面
-    await FlutterCallkitIncoming.endAllCalls();
+
+
   }
 }
