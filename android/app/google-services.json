@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "301732536057",
+    "project_id": "callpratice",
+    "storage_bucket": "callpratice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301732536057:android:16d31c1ffff2715aaa0c28",
+        "android_client_info": {
+          "package_name": "com.mouse.call_notification_pratice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301732536057-82rqig376rfdp9pa3a72mir9dcrj7ar5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlgXpNz2f9a4YWTxjeUO0LxTfyJTubP9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301732536057-82rqig376rfdp9pa3a72mir9dcrj7ar5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
